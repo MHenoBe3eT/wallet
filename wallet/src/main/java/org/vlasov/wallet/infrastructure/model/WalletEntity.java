@@ -1,6 +1,7 @@
 package org.vlasov.wallet.infrastructure.model;
 
 import lombok.Data;
+import org.vlasov.wallet.domain.Wallet;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,5 +20,12 @@ public class WalletEntity {
     @NotNull
     @Min(0)
     private double balance;
+
+    public static Wallet fromEntity(WalletEntity entity) {
+        Wallet wallet = new Wallet();
+        wallet.setWalletId(entity.getWalletId());
+        wallet.setBalance(entity.getBalance());
+        return wallet;
+    }
 }
 
